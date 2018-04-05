@@ -19,6 +19,7 @@ import com.weather.apixu.CITY_NAME
 import com.weather.apixu.utils.hide
 import com.weather.apixu.utils.show
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.content_forcast.*
 import kotlinx.android.synthetic.main.layout_error.*
 import kotlinx.android.synthetic.main.layout_loader.*
 
@@ -40,12 +41,12 @@ class WeatherActivity : AppCompatActivity() {
         WRApplication.appComponent.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(WeatherViewModel::class.java)
 
-        showLoader()
         start()
 
     }
 
     private fun start() {
+        showLoader()
         val disposable = viewModel.getCurrentWeather(CITY_NAME).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ t: WeatherDetailDTO? ->
                     run {
@@ -65,13 +66,19 @@ class WeatherActivity : AppCompatActivity() {
     private fun renderErrorView() {
         hideLoader()
         errorSceneContainer.show()
-        retryButton.setOnClickListener { start() }
+        retryButton.setOnClickListener {
+            kotlin.run {
+                errorSceneContainer.hide()
+                start()
+            }
+        }
 
     }
 
     private fun setupForecastList(list: ArrayList<ForecastDay>) {
         hideLoader()
         errorSceneContainer.hide()
+        weatherViewContainer.show()
         val layoutManager = LinearLayoutManager(applicationContext)
         val dividerItemDecoration = DividerItemDecoration(this, LinearLayoutManager.HORIZONTAL)
         forecastList.layoutManager = layoutManager
