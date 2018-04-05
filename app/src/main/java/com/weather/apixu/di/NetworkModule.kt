@@ -2,6 +2,7 @@ package com.konradszewczuk.weatherapp.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.weather.apixu.BuildConfig
 import com.weather.apixu.data.remote.RemoteConfig
 import com.weather.apixu.data.remote.RemoteWeatherService
 import dagger.Module
@@ -27,10 +28,12 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(): OkHttpClient =
-            OkHttpClient.Builder()
-                    .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                    .build()
+    fun provideOkHttpClient(): OkHttpClient {
+        val level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
+        return OkHttpClient.Builder()
+                .addInterceptor(HttpLoggingInterceptor().setLevel(level))
+                .build()
+    }
 
 
     @Provides

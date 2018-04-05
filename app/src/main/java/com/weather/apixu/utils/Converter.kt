@@ -16,7 +16,7 @@ object Converter {
 
         val forecastDays = ArrayList<ForecastDay>()
         weatherResponse.forecast.forecastday.forEach { it -> forecastDays.add(ForecastDay(it.day.maxtemp_c.toString() , it.day.mintemp_c.toString() , getFormattedDate(it.date) , it.day.condition.text , it.day.condition.icon)) }
-        return WeatherDetailDTO(weatherResponse.location.name, weatherResponse.current.temp_c
+        return WeatherDetailDTO(weatherResponse.location.name, Math.round(weatherResponse.current.temp_c).toString()
                 , forecastDays)
 
     }

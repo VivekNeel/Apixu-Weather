@@ -14,8 +14,8 @@ import javax.inject.Singleton
 @Singleton
 class WeatherRepositoryImpl @Inject constructor(private val remoteWeatherDataSource: RemoteWeatherDataSource) :
         WeatherRepository {
-    override fun getCurrentWeather(name: String): Single<WeatherDetailDTO> {
-        return remoteWeatherDataSource.requestCurrentWeather(name).map { weatherResponse: WeatherResponse ->
+    override fun getCurrentWeather(cityName: String): Single<WeatherDetailDTO> {
+        return remoteWeatherDataSource.requestCurrentWeather(cityName).map { weatherResponse: WeatherResponse ->
             Converter.transformToWeatherDetailsDTO(weatherResponse)
         }
     }

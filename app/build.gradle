@@ -19,7 +19,12 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug{
+            buildConfigField 'String', 'API_KEY', API_KEY
+
+        }
         release {
+            buildConfigField 'String', 'API_KEY', API_KEY
             postprocessing {
                 removeUnusedCode false
                 removeUnusedResources false
@@ -87,4 +92,9 @@ dependencies {
 
     // Gson
     implementation 'com.google.code.gson:gson:2.8.2'
+
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
 }
