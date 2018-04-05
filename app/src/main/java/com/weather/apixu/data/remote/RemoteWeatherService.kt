@@ -1,5 +1,6 @@
 package com.weather.apixu.data.remote
 
+import com.weather.apixu.BuildConfig
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -9,7 +10,6 @@ import retrofit2.http.Query
  */
 interface RemoteWeatherService {
 
-    // TODO : Move api key to gradle.properties
-    @GET("forecast.json?key=55082089de9c4c0281694433180404&days=7")
+    @GET("forecast.json?key=${BuildConfig.API_KEY}&days=7")
     fun fetchCurrentWeather(@Query("q") location: String): Single<WeatherResponse>
 }
