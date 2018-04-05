@@ -1,66 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
-    <ImageView
-        android:id="@+id/banner"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/image_banner_height"
-        android:scaleType="fitXY"
-        android:src="@drawable/banner"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
-
-    <TextView
-        android:id="@+id/tempText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/text_large_temp_top_margin"
-        android:textColor="#ffffff"
-        android:textSize="@dimen/text_large_temp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="26" />
-
-    <TextView
-        android:id="@+id/cityName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed"
-        android:textColor="#ffffff"
-        android:textSize="@dimen/text_size_xxlarge"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tempText"
-        tools:text="Bangalore" />
-
-
-    <ImageView
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="80dp"
-        android:src="@drawable/circle"
-        app:layout_constraintLeft_toRightOf="@+id/tempText"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/forecastList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/banner"
-        tools:listitem="@layout/list_item_forecast">
-
-    </android.support.v7.widget.RecyclerView>
+    <include layout="@layout/content_forcast" />
 
     <include layout="@layout/layout_loader" />
 
