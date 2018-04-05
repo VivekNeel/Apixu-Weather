@@ -2,6 +2,7 @@ package com.weather.apixu.ui
 
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.DividerItemDecoration
@@ -15,6 +16,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
+import android.widget.Toast
 import com.weather.apixu.CITY_NAME
 import com.weather.apixu.utils.hide
 import com.weather.apixu.utils.show
@@ -54,7 +56,7 @@ class WeatherActivity : AppCompatActivity() {
                         cityName.text = t.cityName
                         setupForecastList(t.forecastDays)
                     }
-                }, { t: Throwable? -> renderErrorView() })
+                }, { t: Throwable? -> renderErrorView(t?.message ?: "something went wrong") })
         compositeDisposable.add(disposable)
     }
 
@@ -63,9 +65,10 @@ class WeatherActivity : AppCompatActivity() {
         compositeDisposable.clear()
     }
 
-    private fun renderErrorView() {
+    private fun renderErrorView(msg: String) {
         hideLoader()
         errorSceneContainer.show()
+        Snackbar.make(errorSceneContainer, msg, Toast.LENGTH_SHORT).show()
         retryButton.setOnClickListener {
             kotlin.run {
                 errorSceneContainer.hide()
@@ -80,7 +83,7 @@ class WeatherActivity : AppCompatActivity() {
         errorSceneContainer.hide()
         weatherViewContainer.show()
         val layoutManager = LinearLayoutManager(applicationContext)
-        forecastList.addItemDecoration(DividerItemDecoration(forecastList.context , DividerItemDecoration.VERTICAL))
+        forecastList.addItemDecoration(DividerItemDecoration(forecastList.context, DividerItemDecoration.VERTICAL))
         forecastList.layoutManager = layoutManager
         forecastList.adapter = WeatherAdapter(list)
 
