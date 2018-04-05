@@ -14,4 +14,4 @@ import java.util.ArrayList
 data class ForecastDay @ParcelConstructor constructor(val maxTemp: String, val minTemp: String, val date: String, val conditionText: String, val conditionIcon: String)
 
 @Parcel(Parcel.Serialization.BEAN)
-data class WeatherDetailDTO @ParcelConstructor constructor(val cityName: String, val temp: Double, val forecastDays: ArrayList<ForecastDay>)
+data class WeatherDetailDTO @ParcelConstructor constructor(val cityName: String, val temp: String, val forecastDays: ArrayList<ForecastDay>)
