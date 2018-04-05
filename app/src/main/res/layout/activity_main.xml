@@ -35,9 +35,9 @@
         android:id="@+id/cityName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
         android:textColor="#ffffff"
         android:textSize="@dimen/text_size_xxlarge"
-        android:fontFamily="sans-serif-condensed"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tempText"
@@ -63,5 +63,7 @@
     </android.support.v7.widget.RecyclerView>
 
     <include layout="@layout/layout_loader" />
+
+    <include layout="@layout/layout_error" />
 
 </android.support.constraint.ConstraintLayout>
