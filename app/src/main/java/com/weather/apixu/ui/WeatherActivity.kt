@@ -3,6 +3,7 @@ package com.weather.apixu.ui
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import com.weather.apixu.R
@@ -11,7 +12,6 @@ import com.weather.apixu.data.ForecastDay
 import com.weather.apixu.data.WeatherDetailDTO
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
@@ -80,10 +80,8 @@ class WeatherActivity : AppCompatActivity() {
         errorSceneContainer.hide()
         weatherViewContainer.show()
         val layoutManager = LinearLayoutManager(applicationContext)
-        val dividerItemDecoration = DividerItemDecoration(this, LinearLayoutManager.HORIZONTAL)
+        forecastList.addItemDecoration(DividerItemDecoration(forecastList.context , DividerItemDecoration.VERTICAL))
         forecastList.layoutManager = layoutManager
-        forecastList.addItemDecoration(dividerItemDecoration)
-        forecastList.setHasFixedSize(true)
         forecastList.adapter = WeatherAdapter(list)
 
     }
